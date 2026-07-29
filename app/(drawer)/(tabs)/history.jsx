@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import LottieView from 'lottie-react-native';
 
 export default function HistoryScreen() {
     const [shifts, setShifts] = useState([]);
@@ -33,6 +34,12 @@ export default function HistoryScreen() {
                 <View style={styles.emptyContainer}>
                     <Ionicons name="documents-outline" size={64} color="#ccc" />
                     <Text style={styles.emptyText}>אין עדיין משמרות מתועדות</Text>
+                    <LottieView source={require('../../../assets/animations/socialv no data.json')}
+                        autoPlay
+                        loop={true}
+                        style={{ width: 200, height: 200 }}
+                    />
+
                 </View>
             ) : (
                 <FlatList
