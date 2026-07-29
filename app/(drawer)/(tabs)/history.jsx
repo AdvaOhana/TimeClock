@@ -48,7 +48,15 @@ export default function HistoryScreen() {
                     renderItem={({ item }) => (
                         <TouchableOpacity
                             style={styles.card}
-                            onPress={() => router.push({ pathname: '/details', params: item })}
+                            onPress={() => router.push({
+                                pathname: `/shift/${item.id}`,
+                                params: {
+                                    date: item.date,
+                                    checkIn: item.checkIn,
+                                    checkOut: item.checkOut,
+                                    duration: item.duration
+                                }
+                            })}
                         >
                             <Text style={styles.cardDate}>תאריך: {item.date}</Text>
                             <Text style={styles.cardInfo}>כניסה: {item.checkIn} | יציאה: {item.checkOut}</Text>

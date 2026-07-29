@@ -4,17 +4,18 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function DetailsScreen() {
-    const params = useLocalSearchParams();
+    const { id, date, checkIn, checkOut, duration } = useLocalSearchParams();
     const router = useRouter();
 
     return (
         <View style={styles.container}>
             <View style={styles.card}>
                 <Text style={styles.title}>פרטי משמרת מורחבים</Text>
-                <Text style={styles.label}>תאריך: <Text style={styles.value}>{params.date}</Text></Text>
-                <Text style={styles.label}>שעת כניסה: <Text style={styles.value}>{params.checkIn}</Text></Text>
-                <Text style={styles.label}>שעת יציאה: <Text style={styles.value}>{params.checkOut}</Text></Text>
-                <Text style={styles.label}>משך המשמרת: <Text style={styles.value}>{params.duration}</Text></Text>
+                <Text style={styles.label}>מזהה משמרת: <Text style={styles.value}>{id}</Text></Text>
+                <Text style={styles.label}>תאריך: <Text style={styles.value}>{date}</Text></Text>
+                <Text style={styles.label}>שעת כניסה: <Text style={styles.value}>{checkIn}</Text></Text>
+                <Text style={styles.label}>שעת יציאה: <Text style={styles.value}>{checkOut}</Text></Text>
+                <Text style={styles.label}>משך המשמרת: <Text style={styles.value}>{duration}</Text></Text>
 
                 <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
                     <Ionicons name="arrow-back" size={20} color="#fff" />
