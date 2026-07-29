@@ -10,15 +10,21 @@ export default function HomeScreen() {
     const scaleAnim = useRef(new Animated.Value(1)).current;
     const router = useRouter();
 
-    const triggerAnimation = () => {
-        Animated.sequence([
-            Animated.spring(scaleAnim, { toValue: 1.2, useNativeDriver: true }),
-            Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true }),
-        ]).start();
-    };
+    function myFuncIn() {
+        Animated.spring(scaleAnim, {
+            toValue: 0.8,
+            useNativeDriver: true
+        }).start()
+    }
+    function myFuncOut() {
+        Animated.spring(scaleAnim, {
+            toValue: 1,
+            friction: 2,
+            useNativeDriver: true
+        }).start()
+    }
 
     const handlePressAction = async () => {
-        triggerAnimation();
         const currentTime = new Date();
 
         if (!isCheckedIn) {
@@ -62,7 +68,7 @@ export default function HomeScreen() {
             <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
                 <TouchableOpacity
                     style={[styles.mainButton, { backgroundColor: isCheckedIn ? '#FF3B30' : '#34C759' }]}
-                    onPress={handlePressAction}
+                    onPress={handlePressAction} onPressIn={myFuncIn} onPressOut={myFuncOut}
                 >
                     <Text style={styles.mainButtonText}>{isCheckedIn ? 'יציאה מהמשמרת' : 'כניסה למשמרת'}</Text>
                 </TouchableOpacity>
